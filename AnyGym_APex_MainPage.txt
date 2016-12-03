@@ -1,0 +1,8 @@
+public class GymSignup{
+
+    public GymSignup(){
+    }
+    
+    
+
+}

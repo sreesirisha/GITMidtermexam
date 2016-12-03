@@ -1,0 +1,30 @@
+<apex:page controller="SignIn" tabStyle="signup__c" sidebar="false" showHeader="false">
+
+<apex:form >
+<style type="text/css">
+    .bPageBlock {
+     background-color: Black !important;
+        width: 100%;    
+    vertical-align: centre;
+    style="float:centre">
+    }
+</style>
+<apex:page standardstylesheets="false" showHeader="false" sidebar="false"/>
+
+<apex:pageMessages />
+<apex:pageBlock >
+<apex:panelGrid >
+<font color="white"><b>Email</b> </font>
+<apex:inputText value="{!Email}"/> 
+<font color="white"><b>Password</b> </font>
+<apex:inputsecret value="{!password}"/>
+</apex:panelGrid>
+<apex:commandButton action="{!signIn1}" value="SignIn"/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--<apex:commandButton action="{!signup}" value="Signup"/>-->
+<apex:commandButton action="{!forgotPassword}" value="Forgot Password" />
+</apex:pageBlock>
+
+</apex:form>
+  
+</apex:page>

@@ -1,0 +1,64 @@
+<!--<apex:page controller="GymSignup">
+  <apex:form >
+      <apex:pageBlock >
+          <apex:image url="https://ap1.salesforce.com/resource/13485470/Logo"/>
+              <img id="theImage" src="https://ap1.salesforce.com/resource/13485470/Logo" width="220" height="55"/>
+          <apex:pageBlockSection >
+              <apex:outputLink title="Sign Up" value="/apex/SignUp_Page">
+              Sign UP
+              </apex:outputLink>   
+          </apex:pageBlockSection>
+          <apex:pageBlockSection >
+              <apeX:outputLink >
+              Sign IN
+              </apeX:outputLink>
+          </apex:pageBlockSection>
+      </apex:pageBlock>
+  
+  </apex:form>
+</apex:page>-->
+<apex:page controller="SignIn" tabStyle="signup__c" showHeader="false" sidebar="false" >
+<apex:form >
+
+<style type="text/css">
+    .bPageBlock {
+     background-color: black !important;
+        width: 100%;    
+    vertical-align: middle;
+    }
+</style>
+<apex:page standardstylesheets="false" showHeader="false" />
+<apex:pageMessages />
+<apex:pageBlock >
+<div align="center" >
+
+<!--<apex:image url="https://ap1.salesforce.com/resource/13485470/GYM_Logo.jpg" width="220" height="55"/>-->
+<apex:image id="theImage" value="{!$Resource.GYM_Logo}" width="200" height="200"/>
+
+              <!--<img id="theImage" src="https://ap1.salesforce.com/resource/13485470/Logo.jpg" width="220" height="55"/>-->
+        </div>      
+<br> </br>
+<div align="center" >
+
+<apex:commandButton style="float:centre" action="{!signIn2}" value="SignIn" styleClass="wide-input"/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<apex:commandButton action="{!signup}" value="Signup" styleClass="wide-input"/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--<apex:commandLink action="{!forgotPassword}" value="Forgot Password"/>-->
+</div>
+<apex:outputLink value="https://www.facebook.com" id="theLink">
+<apex:image id="img" value="{!$Resource.facebook}" width="20" height="20"/>
+</apex:outputLink>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<apex:outputLink value="https://twitter.com/login?lang=en" id="llink1">
+<apex:image id="img1" value="{!$Resource.twitter}" width="20" height="20"/>     
+</apex:outputLink>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<apex:outputLink value="https://accounts.google.com/ServiceLogin#identifier" id="llink2">
+<apex:image id="img2" value="{!$Resource.gmail}" width="20" height="20"/>     
+</apex:outputLink>
+</apex:pageBlock>
+
+</apex:form>
+  
+</apex:page>

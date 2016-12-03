@@ -1,0 +1,130 @@
+public with sharing class signups {
+
+    public String enterEmailaddress { get; set; }
+
+    public String SignupName { get; set; }
+public List<signup__c> lgs {get;set;}
+    //public Login__c login {get;set;}
+    
+   
+
+    public String mobileNumber {get;set;}
+    public String email{get;set;}
+    public String usernane {get;set;}
+    
+    
+    public String password {get;set;}
+    public Integer length {get;set;}
+    public String verifyPassword {get;set;}
+    public String strDOB{get;set;}
+    public Integer strCard{get;set;}
+    public String strCVV{get;set;}
+    public String strStreet{get;set;}
+    public String strCity{get;set;}
+    public Integer intPinCode{get;set;}
+    public String strCountry{get;set;}
+  
+    private signup__c a;
+
+    public signups(){
+        a= new signup__c();
+    }
+    
+    PageReference pagRef;
+
+   
+
+    public PageReference forgotPassword() {
+       PageReference reference=new PageReference('/apex/forgotpassword');
+     reference.setRedirect(true);
+     
+return reference;
+    }
+    public PageReference submit(){
+    if(SignupName=='' && email=='' && password=='' && verifyPassword=='' && mobileNumber=='')
+   {
+   ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.FATAL,'please enter all fileds'); 
+                 ApexPages.addMessage(myMsg);    
+                 return null;
+   }
+    
+   if(SignupName=='')
+    {
+    ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.FATAL,'please enter your name'); 
+                 ApexPages.addMessage(myMsg);    
+                 return null;
+    }
+    if(email=='')
+    {
+    ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.FATAL,'please enter email'); 
+                 ApexPages.addMessage(myMsg);    
+                 return null;
+    }
+   
+    lgs = [Select Username__c from signup__c];
+         for(Signup__c log: lgs){
+            if(usernane == log.Username__c)
+            {
+            ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.FATAL,'user already exist'); 
+                 ApexPages.addMessage(myMsg);    
+                 return null;
+                 }
+            
+            }
+    
+     if(password=='' && verifyPassword=='')
+        {
+     
+         ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.FATAL,'enter password/verify passwords'); 
+                 ApexPages.addMessage(myMsg);    
+                 return null;
+                 }
+    else{
+    
+        if(password == verifyPassword){
+            System.debug('-------Submit Entered--------');
+            length = password.length();
+            /*if (length < 6 || length > 6)
+            {
+             ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.FATAL,'password sholud not be less or greater than six characters '); 
+                 ApexPages.addMessage(myMsg);
+            return null;
+            }*/
+            
+                       
+            a.Name= SignupName;
+            a.username__c = email;
+            a.Create_password__c= password;
+            a.Verify_Password__c= verifyPassword;
+            a.Mobile_Number__c= mobilenumber ;
+            a.DOB__c = strDOB;
+            a.Card__c  = strCard;
+            a.Street__c = strStreet;
+            a.City__c = strCity;
+            a.Country__c = strCountry;
+            
+            try{
+                insert a ;
+            }catch(Exception e){
+                system.debug(e);
+            }
+            pagRef = new Pagereference('/apex/SignIn');
+            System.debug('-------successfully created login details--------');
+            // used PageReference to home page
+        }
+        else
+        {
+            // display password mismatched error message
+            ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.FATAL,'passwords  didnot match'); 
+                 ApexPages.addMessage(myMsg);    
+                 return null;
+             } 
+        
+        }
+        
+      return pagRef;
+    }
+    
+    
+    
+}

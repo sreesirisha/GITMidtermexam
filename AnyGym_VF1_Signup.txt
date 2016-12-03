@@ -1,0 +1,56 @@
+<apex:page controller="signups" showHeader="false">
+<!--<apex:stylesheet value="/resources/htdocs/css/basic.css"/>-->
+<apex:form >
+<style type="text/css">
+    .bPageBlock {
+     background-color: Black !important;
+        width: 100%;    
+    vertical-align: middle;
+    }
+</style>
+<apex:pagemessages />
+<apex:pageBlock >
+
+<apex:panelGrid >
+
+<style type="text/css">
+    .bPageBlock {
+     background-color: Black !important;
+        width: 100%;    
+    vertical-align: centre;
+              padding: 0px 450px !important;
+
+    style="float:centre">
+    }
+</style>
+<font color="white"><b>Name</b> </font>
+<apex:inputText value="{!SignupName}"  style="float:centre"/>
+
+<font color="white"><b>Email</b> </font>
+<apex:inputText value="{!email}" />
+<font color="white"><b>Password</b> </font>
+<apex:inputText value="{!password}"/>
+<font color="white"><b> Confirm Password</b> </font>
+<apex:inputText value="{!verifyPassword}"/>
+<font color="white"><b>DOB</b> </font>
+<apex:inputText value="{!strDOB}"/>
+<font color="white"><b>Card</b> </font>
+<apex:inputText value="{!strCard}"/>
+<font color="white"><b>CVV</b> </font>
+<apex:inputText value="{!strCVV}"/>
+<font color="white"><b>Street</b> </font>
+<apex:inputText value="{!strStreet}"/>
+<font color="white"><b>City</b> </font>
+<apex:inputText value="{!strCity}"/>
+<font color="white"><b>Postal Code</b> </font>
+<apex:inputText value="{!intPinCode}"/>
+<font color="white"><b>Country</b> </font>
+<apex:inputText value="{!strCountry}"/>
+
+<!--<b>Mobile Number</b>
+<apex:inputText value="{!mobileNumber}" required="true"/>-->
+<apex:commandButton action="{!submit}" value="Submit"  />
+</apex:panelGrid>
+</apex:pageBlock>
+</apex:form> 
+</apex:page>

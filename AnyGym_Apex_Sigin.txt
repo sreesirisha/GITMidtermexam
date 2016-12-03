@@ -1,0 +1,122 @@
+public with sharing class SignIn {
+
+    public String Email { get; set; }
+    public List<signup__c> lgs {get;set;}
+    public signup__c login {get;set;}
+    //punblic List<login__c> lgin(get;set;)
+    
+    public String mobileNumber {get;set;}
+    //public Email email{get;set;}
+    public String usernane {get;set;}
+    
+    public String password {get;set;}
+    public Integer length {get;set;}
+    public String verifyPassword {get;set;}
+    public signup__c a;
+    public signup__c objsignup;
+    
+    public SignIn(ApexPages.StandardSetController controller) {
+        login = (signup__c)controller.getRecord(); 
+    }
+    
+    public SignIn(){
+        a= new signup__c();
+    }
+    
+    public PageReference signIn2(){
+        PageReference reference;
+            reference=new PageReference('/apex/SigninPage');
+        
+        return reference;
+    }
+    public PageReference signIn1(){
+        PageReference reference;
+        Boolean alreadyExist = true;
+        
+        
+      if(Email == '' )
+        {
+            ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.Error,'please enter your email '); 
+                 ApexPages.addMessage(myMsg);    
+                 return null;
+        }        
+       if(password == '' ){
+            ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.Error,'please enter your password '); 
+                 ApexPages.addMessage(myMsg);    
+                 return null;
+        }
+       
+        objsignup = [Select id,username__c,Create_password__c,Email__c from signup__c where username__c =: Email and Create_password__c =:password limit 1];
+        
+        if(objsignup != null){
+            reference=new PageReference('/'+objsignup.Id);
+        }
+        /*Signup__c matchedSignup ;
+        for(Signup__c log: lgs){
+            System.debug('________log.Username__c________'+log.Username__c);
+            System.debug('________Email________'+Email);
+            if(Email == log.Username__c )
+            {
+             matchedSignup = log ;
+             alreadyExist = TRUE; break;
+            }
+        }
+        if(alreadyExist == TRUE){
+            if(Password == matchedSignup.Create_password__c)
+            {
+            reference=new PageReference('https://mail.google.com/mail/u/0/?pli=1#inbox');
+                // alreadyExist = true;
+             }
+             else
+             {
+                          system.debug('----> ' + Password + ' -- ' + matchedSignup.Create_password__c);
+             ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.Error,'please enter valid password '); 
+                 ApexPages.addMessage(myMsg);    
+                 return null;
+            }
+        }else {
+            ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.Error,'you are not a registered user'); 
+                 ApexPages.addMessage(myMsg);    
+                 return null;
+        
+        }*/    
+             
+          
+       // if(alreadyExist){
+           
+            //reference=new PageReference('http://in.bodhtree.com/login.aspx');
+           
+            //}
+            
+           // else
+            //{
+           // ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.Error,'you are not a registered user'); 
+                // ApexPages.addMessage(myMsg);    
+                // return null;
+           // }
+        //}
+        
+     return reference;
+    }
+   
+    public PageReference forgotPassword() {
+        
+        signup__c signUpObj = [Select Username__c,Create_password__c,Email__c,Forgot_Password__c from signup__c WHERE Username__c=: Email LIMIT 1];
+        
+       if(signUpObj != NULL){
+            signUpObj.Forgot_Password__c= 'true';
+            
+            update signUpObj;
+       }
+        
+      return null;
+    }
+    
+  public PageReference signup() {
+    
+        PageReference reference=new PageReference('/apex/Signup');
+        reference.setRedirect(true);
+        
+     return reference;
+    }     
+}
