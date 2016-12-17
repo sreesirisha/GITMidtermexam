@@ -1,6 +1,8 @@
 //first commit//
 
 
+//seveth commit//
+
 public with sharing class signups {
 
     public String enterEmailaddress { get; set; }
