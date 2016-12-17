@@ -13,6 +13,7 @@
               Sign IN
               //Sign IN//
 	//SIGN OUT//
+	//We just added this//
               </apeX:outputLink>
           </apex:pageBlockSection>
       </apex:pageBlock>
